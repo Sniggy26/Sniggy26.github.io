@@ -18,7 +18,80 @@
     --font-display: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
   }
+  /* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delay for cards */
+.reveal:nth-child(1) { transition-delay: 0s; }
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* Typing cursor on hero name */
+.hero-name span::after {
+  content: '|';
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Skill tag hover pop */
+.tag {
+  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Glowing accent line under section titles */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 0.75rem;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(71,160,255,0.5);
+}
   /* Star field */
   body::before {
     content: '';
@@ -486,12 +559,12 @@
   <p class="section-label">Who I Am</p>
   <h2 class="section-title">About Me</h2>
   <div class="about-grid">
-    <div class="about-text">
+    <div class="about-text reveal-left">
       <p>I'm a Computer Science undergraduate at Georgia State University with a passion for building things that matter. From designing normalized databases to training AI models on real-world documents, I love working at the intersection of software engineering and data.</p>
       <p>I've contributed to full-stack Java applications, explored AI-powered document intelligence, and spent time breaking down complex technical concepts as a tutor. I'm equally comfortable leading technical decisions on a team as I am diving deep into code.</p>
       <p>Currently interested in Software Development Engineering, Data Analytics, AI, and Business Management.</p>
     </div>
-    <div class="about-facts">
+    <div class="about-facts reveal">
       <div class="fact">
         <div class="fact-label">University</div>
         <div class="fact-value">Georgia State University</div>
@@ -516,7 +589,7 @@
   <p class="section-label">What I Know</p>
   <h2 class="section-title">Skills</h2>
   <div class="skills-grid">
-    <div class="skill-card">
+    <div class="skill-card reveal-scale">
       <h3>Languages</h3>
       <div class="skill-tags">
         <span class="tag">Java</span>
@@ -525,7 +598,7 @@
         <span class="tag">HTML/CSS</span>
       </div>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal-scale">
       <h3>Frameworks & Tools</h3>
       <div class="skill-tags">
         <span class="tag">MySQL</span>
@@ -536,7 +609,7 @@
         <span class="tag">Google Colab</span>
       </div>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal-scale">
       <h3>AI & Data</h3>
       <div class="skill-tags">
         <span class="tag">OCR</span>
@@ -547,7 +620,7 @@
         <span class="tag">Gemini API</span>
       </div>
     </div>
-    <div class="skill-card">
+    <div class="skill-card reveal-scale">
       <h3>Soft Skills</h3>
       <div class="skill-tags">
         <span class="tag">Technical Communication</span>
@@ -584,7 +657,7 @@
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal">
   <h3>GSU Unofficial Campus Guide</h3>
   <p class="project-course">CodePath AI201 · Project 1</p>
   <div class="project-desc">
@@ -606,7 +679,7 @@
   </div>
 </div>
 
-<div class="project-card">
+<div class="project-card reveal">
   <h3>FitFindr</h3>
   <p class="project-course">CodePath AI201 · Project 2</p>
   <div class="project-desc">
@@ -627,7 +700,7 @@
   </div>
 </div>
 
-<div class="project-card">
+<div class="project-card reveal">
   <h3>TakeMeter</h3>
   <p class="project-course">CodePath AI201 · Project 3</p>
   <div class="project-desc">
@@ -654,7 +727,7 @@
   <p class="section-label">Where I've Been</p>
   <h2 class="section-title">Experience</h2>
   <div class="experience-list">
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div>
         <div class="exp-role">Extern, AI-Powered Document Intelligence</div>
         <div class="exp-org">Outamation, Inc.</div>
@@ -665,7 +738,7 @@
       </div>
       <div class="exp-date">May 2026 – Present</div>
     </div>
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div>
         <div class="exp-role">RISE in Computing Scholar</div>
         <div class="exp-org">Georgia State University</div>
@@ -676,7 +749,7 @@
       </div>
       <div class="exp-date">Jan 2026 – Apr 2026</div>
     </div>
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div>
         <div class="exp-role">Math & CS Tutor</div>
         <div class="exp-org">Georgia State University</div>
@@ -687,7 +760,7 @@
       </div>
       <div class="exp-date">Feb 2026 – May 2026</div>
     </div>
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div>
         <div class="exp-role">SAT Tutor</div>
         <div class="exp-org">Cristo Rey Jesuit High School · Remote</div>
@@ -715,6 +788,21 @@
   <span>© 2026 Snigdha Addagarla</span>
   <span style="color:var(--border);">Built with HTML · Hosted on GitHub Pages</span>
 </footer>
+
+  <script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => {
+    observer.observe(el);
+  });
+</script>
 
 </body>
 </html>
