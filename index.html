@@ -63,6 +63,7 @@
   content: '|';
   color: var(--accent);
   animation: blink 1s step-end infinite;
+  margin-left: 2px;
 }
 
 @keyframes blink {
@@ -544,7 +545,7 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <p class="hero-tag">Computer Science Undergraduate</p>
-  <h1 class="hero-name">Snigdha<br/><span>Addagarla</span></h1>
+  <h1 class="hero-name"><span id="typed-name"></span></h1><span id="typed-name"></span></h1>Snigdha<br/><span>Addagarla</span></h1>
   <p class="hero-bio">
     Computer science undergraduate with hands-on experience building full-stack Java applications and designing production-ready databases, driven by a passion for software engineering, data analytics, and AI. Known for picking up new concepts fast and delivering results, whether leading technical work on a team or explaining complex ideas to others.
   </p>
@@ -790,12 +791,27 @@
 </footer>
 
   <script>
+  // Typing effect
+  const fullName = "Snigdha Addagarla";
+  const el = document.getElementById("typed-name");
+  let i = 0;
+
+  function type() {
+    if (i < fullName.length) {
+      el.textContent += fullName[i];
+      i++;
+      setTimeout(type, 80);
+    }
+    // cursor keeps blinking via CSS after done
+  }
+
+  // Start after hero fade-in delay
+  setTimeout(type, 600);
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
